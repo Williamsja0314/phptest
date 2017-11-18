@@ -20,7 +20,7 @@ class Math
 
 	public static function getPI()
 	{
-		return 6.7; //3.141; // Bug
+		return 3.1416;
 	}
 
 	public static function useHelper()
