@@ -1,0 +1,48 @@
+language: php
+#build_image: shippable/minv2
+
+env:
+  - secure: UkCCANqVtc/JnXvX37K+Y3uQb25jWNAKJB32tG9+GNTEfNzdR7RL5LG78pSooJ1wXgKBGJp/k0IXCBsjAaG7Kq2xQHBeG0QJ/xb8drSV9ReHSdoPMWCv1eT8E8p7vUC4u5qtw4bWn7DVewIdq+KT6pGAABbuohHypyyrcAZHAFwZmSIx7ykuCB/H7n2lvvZSv1W9H1d86AOfiCAVjVl+6fln9f629Y7eSxtgckaNnF+jkAsVD/nBnHkjCKec4ViE9LvTQklTjX6jjiY4XOiOHHne531osjmP/Ka5M6fcwwAiI9bxuAhOCbM4Llrn2j0PAtqhM/7xL8DXqyPEiZMhEw==
+  #beta
+  - secure: KRqfUVQS8NrKmbVp44LRNaq45a6l/48pu3Fxq1IhzEl/DrvkzZfIe+XaZV8JW9POB8cYFV3Iv2tUO1mZk9la9NPfza2KcagI2vFa/VYGLTZJ8eUtT36C+6UcAsjpKmrc+gS7/lJL/pJ8w9J+fJ1B5CXAIG6AI3FOJPTiRCcxAvzx+CDqsDDslsBuBcXYhwpwATDeEuajjHolW0Q8f9ptAB7FoSdL3HSRbo8EJXIsm+iYGs3kYzfZraFpJcuqD9Tp0zuIt61iIsJaZil3KSZc/X/p1Kr+qdSGV1vtaUIridi/+d+f4gjQuTFkzBbhMzl7fg6YKsyycddETwFbEmwuhw==
+  #prod
+  - secure: VstIhT+a1vLQpYNipHgN3yqmQHkB7r71UIgLyLhMbSj3yribSrhSVe9FrcjUJB62VvjmrPei8RFc39/Bty973lfrElDoGGdM1EuC+2VRKGL01YBUB2GNurdtFlJarjwdJmBx0EOmJ0iETQVhpENky4bhq30vK6NfKvHNzIzNXEY2w2Ovm4Maab0EPZ2sYaMssEN3XMJnfyLplzUkqXs2EOuEwUtSAA+fsZ+yARU4D90Nm0PMpzXxcHAAhVn/TIt66the2nZwoYaBYgNgP6LmQtPWHItvMHr+DKTcI0IvL1BpqcAAVJb9QfpmKkydY+tc4ex5bdDtsimF1KUy6oKwaA==
+
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+  - 5.6
+ 
+#install: true
+
+before_script: 
+  #- mkdir -p shippable/codecoverage
+  - mkdir -p shippable/testresults
+  - php -v
+
+script:
+   - phpunit  --log-junit shippable/testresults/junit.xml --coverage-xml shippable/codecoverage tests/calculator_test.php
+   - echo $prod and $beta and $token11
+
+archive: true
+
+branches:
+  only:
+    - master
+    - pr
+
+    
+notifications:
+     email:
+         recipients:
+             - vidya@shippable.com
+             - buildsampletest@gmail.com
+         on_success: change
+         on_failure: always
+
+
+parallelized_test: true
+
+
+#cache: true
