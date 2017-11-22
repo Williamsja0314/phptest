@@ -1,5 +1,5 @@
 <?php
-class Calculator{
+Calculator{
   
   public function add($numbers_to_add){
       $sum = 0;
